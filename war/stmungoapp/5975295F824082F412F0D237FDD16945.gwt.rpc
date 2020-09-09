@@ -1,0 +1,21 @@
+@FinalFields, false
+com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException, true, true, true, true, com.google.gwt.user.client.rpc.IncompatibleRemoteServiceException/3936916533, 3936916533
+com.google.gwt.user.client.rpc.RpcTokenException, true, true, false, false, com.google.gwt.user.client.rpc.RpcTokenException/2345075298, 2345075298
+com.google.gwt.user.client.rpc.XsrfToken, false, false, true, true, com.google.gwt.user.client.rpc.XsrfToken/4254043109, 4254043109
+com.stmungo.client.model.TranslatorChoice, true, true, false, false, com.stmungo.client.model.TranslatorChoice/1328507610, 1328507610
+com.stmungo.client.model.TranslatorMain, true, true, false, false, com.stmungo.client.model.TranslatorMain/2064977896, 2064977896
+com.stmungo.client.model.TranslatorProtocol, true, true, false, false, com.stmungo.client.model.TranslatorProtocol/1811493042, 1811493042
+com.stmungo.client.model.TranslatorRole, true, true, false, false, com.stmungo.client.model.TranslatorRole/987726901, 987726901
+com.stmungo.client.model.TranslatorScribble, true, true, false, false, com.stmungo.client.model.TranslatorScribble/2043260910, 2043260910
+com.stmungo.client.model.TranslatorScribbleRole, true, true, false, false, com.stmungo.client.model.TranslatorScribbleRole/3599903471, 3599903471
+com.stmungo.client.model.TranslatorTypestate, true, true, false, false, com.stmungo.client.model.TranslatorTypestate/2086137646, 2086137646
+com.stmungo.client.model.ValidatorChoice, true, true, false, false, com.stmungo.client.model.ValidatorChoice/135462174, 135462174
+com.stmungo.client.model.ValidatorMain, true, true, false, false, com.stmungo.client.model.ValidatorMain/1177558580, 1177558580
+com.stmungo.client.model.ValidatorProtocol, true, true, false, false, com.stmungo.client.model.ValidatorProtocol/2852414242, 2852414242
+com.stmungo.client.model.ValidatorRole, true, true, false, false, com.stmungo.client.model.ValidatorRole/133862889, 133862889
+com.stmungo.client.model.ValidatorTypestate, true, true, false, false, com.stmungo.client.model.ValidatorTypestate/2358870329, 2358870329
+com.stmungo.client.service.Service, false, false, false, false, _, 1761752191
+java.lang.Exception, true, false, true, false, java.lang.Exception/1920171873, 1920171873
+java.lang.RuntimeException, true, false, true, false, java.lang.RuntimeException/515124647, 515124647
+java.lang.String, true, true, true, true, java.lang.String/2004016611, 2004016611
+java.lang.Throwable, true, false, true, false, java.lang.Throwable/2953622131, 2953622131

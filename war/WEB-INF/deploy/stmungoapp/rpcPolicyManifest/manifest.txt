@@ -1,0 +1,3 @@
+# Module stmungoapp
+# RPC service class, partial path of RPC policy file
+com.stmungo.client.service.Service, 5975295F824082F412F0D237FDD16945.gwt.rpc
