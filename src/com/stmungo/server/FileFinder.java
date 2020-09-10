@@ -2,9 +2,11 @@ package com.stmungo.server;
 
 import java.io.*;
 
-class FileFinder implements Serializable{
-	
+//Finds the directory of file based on text input utilising the found name returning the found files directory location
+class FileFinder implements Serializable {
+
 	String output;
+
 	public String dirFind(String name, File file) {
 
 		File[] list = file.listFiles();

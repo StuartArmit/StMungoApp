@@ -13,8 +13,6 @@ import com.stmungo.client.model.TranslatorChoice;
 import com.stmungo.client.model.TranslatorMain;
 import com.stmungo.client.model.TranslatorProtocol;
 import com.stmungo.client.model.TranslatorRole;
-import com.stmungo.client.model.TranslatorScribble;
-import com.stmungo.client.model.TranslatorScribbleRole;
 import com.stmungo.client.model.TranslatorTypestate;
 import com.stmungo.client.model.ValidatorChoice;
 import com.stmungo.client.model.ValidatorMain;
@@ -23,84 +21,19 @@ import com.stmungo.client.model.ValidatorRole;
 import com.stmungo.client.model.ValidatorTypestate;
 import com.stmungo.client.service.Service;
 
+//Service implementation requires a method for each service stream creating an instance 
+//of each model object to enable synchronicity of processes each method receives string 
+//data from server side and returns object string data as required. Methods utilise jar
+//files passing required it's required input, extracting the output as required i.e. via
+//file generation or console capture. 
 public class ServiceImp extends RemoteServiceServlet implements Service {
-	String globalName;
 	String localName;
-
-	@Override
-	public TranslatorScribbleRole getTranslatorScribbleRole(String textScr) {
-		TranslatorScribbleRole scribbleRole = new TranslatorScribbleRole();
-
-		FileWriter inputFile;
-		try {
-			inputFile = new FileWriter("scribble.scr");
-			inputFile.write(textScr);
-			inputFile.flush();
-			inputFile.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		GlobalNameFinder gnf = new GlobalNameFinder();
-		globalName = (gnf.nameFind(textScr));
-
-		RoleNameFinder rnf = new RoleNameFinder();
-		String roleName = (rnf.roleFind(textScr));
-
-		if (roleName.contentEquals("ERROR") || globalName.contentEquals("ERROR")) {
-			scribbleRole.setText("An error has occured when proccessing, please check your data and try again");
-		}
-
-		scribbleRole.setText(roleName);
-		return scribbleRole;
-	}
-
-	@Override
-	public TranslatorScribble getTranslatorScribble(String text) {
-		TranslatorScribble scribbleText = new TranslatorScribble();
-
-		ProcessBuilder pb = new ProcessBuilder("cmd", "/c",
-				"C:/Users/SA276/MastersProject/StMungoApp/war/WEB-INF/lib/scribble-0.4.3/scribblec.sh",
-				"C:/Users/SA276/MastersProject/StMungoApp/war/scribble.scr", "-project " + globalName + " " + text);
-
-		try {
-			Process p = pb.start();
-
-			String nameScr = "scribble.scr";
-			String dir = "C:/Users/SA276/MastersProject/StMungoApp/war";
-
-			FileFinder ff = new FileFinder();
-			String loc = (ff.dirFind(nameScr, new File(dir)));
-
-			BufferedReader reader = new BufferedReader(new FileReader(loc + "/" + nameScr));
-
-			StringBuilder stringBuilder = new StringBuilder();
-			String line = null;
-			String ls = System.getProperty("line.separator");
-			while ((line = reader.readLine()) != null) {
-				stringBuilder.append(line);
-				stringBuilder.append(ls);
-			}
-			stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-			reader.close();
-
-			String content = stringBuilder.toString();
-			scribbleText.setText(content);
-
-			return scribbleText;
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return scribbleText;
-	}
 
 	@Override
 	public TranslatorMain getTranslatorMain(String text) {
 
 		TranslatorMain mainText = new TranslatorMain();
-		TranslatorRole r = new TranslatorRole();
-
+		
 		FileWriter inputFile;
 		try {
 			inputFile = new FileWriter("input.scr");
@@ -475,61 +408,61 @@ public class ServiceImp extends RemoteServiceServlet implements Service {
 		String dir = "C:/Users/SA276/MastersProject/StMungoApp/war";
 		FileFinder ff = new FileFinder();
 		String loc = (ff.dirFind(nameChoice, new File(dir)));
-		
+
 		if (new File(nameChoiceTwo, loc).exists() == false) {
 			return choiceText;
 		}
-				try {
-					BufferedReader reader;
-					reader = new BufferedReader(new FileReader(loc + "/" + nameChoiceTwo));
+		try {
+			BufferedReader reader;
+			reader = new BufferedReader(new FileReader(loc + "/" + nameChoiceTwo));
 
-					StringBuilder stringBuilder = new StringBuilder();
-					String line = null;
-					String ls = System.getProperty("line.separator");
+			StringBuilder stringBuilder = new StringBuilder();
+			String line = null;
+			String ls = System.getProperty("line.separator");
 
-					while ((line = reader.readLine()) != null) {
-						stringBuilder.append(line);
-						stringBuilder.append(ls);
-					}
+			while ((line = reader.readLine()) != null) {
+				stringBuilder.append(line);
+				stringBuilder.append(ls);
+			}
 
-					stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-					reader.close();
+			stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+			reader.close();
 
-					String content = stringBuilder.toString();
-					String c = choiceText.getText();
-					String concatanated = c.concat(content);
-					choiceText.setText(concatanated);
+			String content = stringBuilder.toString();
+			String c = choiceText.getText();
+			String concatanated = c.concat(content);
+			choiceText.setText(concatanated);
 
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				if (new File(nameChoiceThree, loc).exists() == false) {
-					return choiceText;
-				}	
-					try {
-					BufferedReader reader;
-					reader = new BufferedReader(new FileReader(loc + "/" + nameChoiceThree));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		if (new File(nameChoiceThree, loc).exists() == false) {
+			return choiceText;
+		}
+		try {
+			BufferedReader reader;
+			reader = new BufferedReader(new FileReader(loc + "/" + nameChoiceThree));
 
-					StringBuilder stringBuilder = new StringBuilder();
-					String line = null;
-					String ls = System.getProperty("line.separator");
+			StringBuilder stringBuilder = new StringBuilder();
+			String line = null;
+			String ls = System.getProperty("line.separator");
 
-					while ((line = reader.readLine()) != null) {
-						stringBuilder.append(line);
-						stringBuilder.append(ls);
-					}
+			while ((line = reader.readLine()) != null) {
+				stringBuilder.append(line);
+				stringBuilder.append(ls);
+			}
 
-					stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-					reader.close();
+			stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+			reader.close();
 
-					String content = stringBuilder.toString();
-					String c = choiceText.getText();
-					String concatanated = c.concat(content);
-					choiceText.setText(concatanated);
+			String content = stringBuilder.toString();
+			String c = choiceText.getText();
+			String concatanated = c.concat(content);
+			choiceText.setText(concatanated);
 
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return choiceText;
 	}
 

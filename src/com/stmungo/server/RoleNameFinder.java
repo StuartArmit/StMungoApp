@@ -4,32 +4,32 @@ import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RoleNameFinder implements Serializable{
-	
+//Key search method checks for role information based on correct protocol syntax
+public class RoleNameFinder implements Serializable {
 
 	public String roleFind(String roleString) {
-	
-	Pattern pattern = Pattern.compile("(?<=role ).*");
 
-	Matcher matcher = pattern.matcher(roleString);
+		Pattern pattern = Pattern.compile("(?<=role ).*");
 
-	boolean found = false;
-	while (matcher.find()) {
-		roleString = matcher.group().toString();
-		found = true;
-		
-		roleString = roleString.replace("(", " ");
-		roleString = roleString.replace(",", "");
-		roleString = roleString.replace("role ", "");
-		roleString = roleString.replace(")", "");
-		roleString = roleString.replace(" {", "");
-		roleString = roleString.replace("{", "");
-		
-	if (!found)
-	roleString = ("ERROR");
-	return roleString;
+		Matcher matcher = pattern.matcher(roleString);
 
-}
-	return roleString;
-}
+		boolean found = false;
+		while (matcher.find()) {
+			roleString = matcher.group().toString();
+			found = true;
+
+			roleString = roleString.replace("(", " ");
+			roleString = roleString.replace(",", "");
+			roleString = roleString.replace("role ", "");
+			roleString = roleString.replace(")", "");
+			roleString = roleString.replace(" {", "");
+			roleString = roleString.replace("{", "");
+
+			if (!found)
+				roleString = ("ERROR");
+			return roleString;
+
+		}
+		return roleString;
+	}
 }

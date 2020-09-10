@@ -7,8 +7,10 @@ import com.stmungo.client.service.ServiceClientImp;
 
 public class StMungoApp implements EntryPoint {
 
-public void onModuleLoad() {
-	ServiceClientImp clientImp = new ServiceClientImp(GWT.getModuleBaseURL() + "service");
-	RootPanel.get().add(clientImp.getMainGUI());
-}
+//OnModuleLoad method acts as a main method creating the client service implementation
+//As well as adding the maingui class to the view
+	public void onModuleLoad() {
+		ServiceClientImp clientImp = new ServiceClientImp(GWT.getModuleBaseURL() + "service");
+		RootPanel.get().add(clientImp.getMainGUI());
+	}
 }
